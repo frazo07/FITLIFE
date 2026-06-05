@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitLife</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+
+  <section id="home" class="screen active">
+    <header>
+      <h1>FitLife</h1>
+      <p>Sua saúde em primeiro lugar</p>
+    </header>
+
+    <div class="card">
+      <h2>Olá, Usuário 👋</h2>
+      <p>Meta semanal: 80% concluída</p>
+      <div class="progress"><div class="progress-bar"></div></div>
+    </div>
+
+    <div class="grid">
+      <button onclick="showScreen('treinos')">🏋️ Treinos</button>
+      <button onclick="showScreen('alimentacao')">🥗 Alimentação</button>
+      <button onclick="showScreen('agua')">💧 Água</button>
+      <button onclick="showScreen('metas')">🎯 Metas</button>
+      <button onclick="showScreen('relatorios')">📊 Relatórios</button>
+      <button onclick="showScreen('perfil')">👤 Perfil</button>
+      <button onclick="showScreen('notificacoes')">🔔 Notificações</button>
+      <button onclick="showScreen('profissionais')">👨‍⚕️ Profissionais</button>
+    </div>
+  </section>
+
+  <section id="treinos" class="screen">
+    <h2>🏋️ Treinos</h2>
+    <div class="card"><h3>Novo treino</h3><p>Cadastre seus exercícios do dia.</p></div>
+    <button onclick="showScreen('novoTreino')">+ Novo Treino</button>
+    <button onclick="showScreen('listaTreinos')">Ver Treinos</button>
+    <button onclick="showScreen('home')">Voltar</button>
+  </section>
+
+  <section id="novoTreino" class="screen">
+    <h2>Novo Treino</h2>
+    <input id="treinoNome" placeholder="Nome do treino">
+    <input id="treinoHorario" placeholder="Horário">
+    <button onclick="salvarTreino()">Salvar Treino</button>
+    <button onclick="showScreen('treinos')">Voltar</button>
+  </section>
+
+  <section id="listaTreinos" class="screen">
+    <h2>Treinos Salvos</h2>
+    <div id="treinosSalvos" class="card"></div>
+    <button onclick="showScreen('treinos')">Voltar</button>
+  </section>
+
+  <section id="alimentacao" class="screen">
+    <h2>🥗 Alimentação</h2>
+    <div class="card"><p>Registre suas refeições diárias.</p></div>
+    <button onclick="showScreen('novaRefeicao')">+ Nova Refeição</button>
+    <button onclick="showScreen('listaRefeicoes')">Ver Refeições</button>
+    <button onclick="showScreen('home')">Voltar</button>
+  </section>
+
+  <section id="novaRefeicao" class="screen">
+    <h2>Nova Refeição</h2>
+    <input id="refeicaoNome" placeholder="Nome da refeição">
+    <input id="refeicaoCalorias" placeholder="Calorias">
+    <button onclick="salvarRefeicao()">Salvar Refeição</button>
+    <button onclick="showScreen('alimentacao')">Voltar</button>
+  </section>
+
+  <section id="listaRefeicoes" class="screen">
+    <h2>Refeições Salvas</h2>
+    <div id="refeicoesSalvas" class="card"></div>
+    <button onclick="showScreen('alimentacao')">Voltar</button>
+  </section>
+
+  <section id="agua" class="screen">
+    <h2>💧 Hidratação</h2>
+    <div class="card">
+      <h3>Água consumida</h3>
+      <p><span id="aguaTotal">1.5</span>L</p>
+    </div>
+    <button onclick="adicionarAgua()">+ 250ml</button>
+    <button onclick="showScreen('home')">Voltar</button>
+  </section>
+
+  <section id="metas" class="screen">
+    <h2>🎯 Metas</h2>
+    <div class="card"><p>Crie metas com prazo definido.</p></div>
+    <button onclick="showScreen('novaMeta')">+ Nova Meta</button>
+    <button onclick="showScreen('listaMetas')">Ver Metas</button>
+    <button onclick="showScreen('home')">Voltar</button>
+  </section>
+
+  <section id="novaMeta" class="screen">
+    <h2>Nova Meta</h2>
+    <input id="metaTexto" placeholder="Descrição da meta">
+    <input id="metaPrazo" placeholder="Prazo">
+    <button onclick="salvarMeta()">Salvar Meta</button>
+    <button onclick="showScreen('metas')">Voltar</button>
+  </section>
+
+  <section id="listaMetas" class="screen">
+    <h2>Metas Salvas</h2>
+    <div id="metasSalvas" class="card"></div>
+    <button onclick="showScreen('metas')">Voltar</button>
+  </section>
+
+  <section id="relatorios" class="screen">
+    <h2>📊 Relatórios</h2>
+    <div class="card">
+      <p>Treinos concluídos: 18</p>
+      <p>Desempenho mensal: +20%</p>
+      <p>Meta semanal: 80%</p>
+    </div>
+    <button onclick="showScreen('compartilhar')">Compartilhar Evolução</button>
+    <button onclick="showScreen('home')">Voltar</button>
+  </section>
+
+  <section id="compartilhar" class="screen">
+    <h2>Compartilhar Evolução</h2>
+    <div class="card">
+      <p>Relatório enviado para o profissional cadastrado.</p>
+    </div>
+    <button onclick="showScreen('relatorios')">Voltar</button>
+  </section>
+
+  <section id="perfil" class="screen">
+    <h2>👤 Perfil</h2>
+    <div class="card">
+      <p><strong>Nome:</strong> Usuário FitLife</p>
+      <p><strong>Email:</strong> usuario@email.com</p>
+    </div>
+    <button onclick="showScreen('editarPerfil')">Editar Perfil</button>
+    <button onclick="showScreen('home')">Voltar</button>
+  </section>
+
+  <section id="editarPerfil" class="screen">
+    <h2>Editar Perfil</h2>
+    <input placeholder="Nome">
+    <input placeholder="E-mail">
+    <button onclick="showScreen('perfil')">Salvar Alterações</button>
+    <button onclick="showScreen('perfil')">Voltar</button>
+  </section>
+
+  <section id="notificacoes" class="screen">
+    <h2>🔔 Notificações</h2>
+    <div class="card">
+      <p>18h - Lembrete de treino</p>
+      <p>20h - Beber água</p>
+    </div>
+    <button onclick="showScreen('home')">Voltar</button>
+  </section>
+
+  <section id="profissionais" class="screen">
+    <h2>👨‍⚕️ Profissionais</h2>
+    <div class="card">
+      <p>Personal Trainer: Carlos Silva</p>
+      <p>Nutricionista: Mariana Souza</p>
+    </div>
+    <button onclick="showScreen('home')">Voltar</button>
+  </section>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
